@@ -1,3 +1,5 @@
+const minim = 2;
+const maxim = 20
 
 function showMessage(text) {
     const box = document.getElementById('messageBox');
@@ -9,32 +11,33 @@ function closeMessage() {
     document.getElementById('messageBox').classList.add('hidden');
 }
 
-function createButtons () {
+
+function rezolution(i, button, winnerIndex) {
+    if (i === winnerIndex) {
+        showMessage("Congratulations! You found the winner!");
+        button.classList.replace('btn-primary', 'btn-success');
+    } else {
+        showMessage("Try again!");
+        button.classList.replace('btn-primary', 'btn-looser');
+    }
+}
+
+function createButtons () {  
     const numberOfButtons = document.getElementById('numberOfButtons').value;
-    const container = document.getElementById('buttonContainer');   
-    container.innerHTML = '';
-    const minim = 2;
-    const maxim = 20
-    if(numberOfButtons < minim || numberOfButtons > maxim){
-        alert(`Please enter a number between ${minim} and ${maxim}.`);
-        return;
-    }       
-
+    const container = document.getElementById('buttonContainer'); 
+    container.innerHTML = '';   
+    
     winnerIndex = Math.floor(Math.random() * numberOfButtons);
-
-    for (let i = 0; i < numberOfButtons; i++) { 
+    
+    if(numberOfButtons < minim || numberOfButtons > maxim){
+        showMessage(`Please enter a number between ${minim} and ${maxim}.`);
+        return;
+    }     
+    for (let i = 0; i < numberOfButtons; ++i) { 
         let button = document.createElement('button');
         button.textContent = `Button ${i + 1}`;
         button.className = 'btn btn-primary';
-        button.onclick = function() {
-            if (i === winnerIndex) {
-                showMessage("Congratulations! You found the winner!");
-                button.classList.replace('btn-primary', 'btn-success');
-            } else {
-                showMessage("Try again!");
-                button.classList.replace('btn-primary', 'btn-looser');
-            }
-        };
-        container.appendChild(button);
+        button.onclick = () => rezolution(i, button, winnerIndex);
+    container.appendChild(button);
     }
 }
