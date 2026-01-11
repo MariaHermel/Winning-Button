@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find the hidden button</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+       <div class="outerContainer">
+        <h1>Find the winning button</h1>
+          <p> Please enter the number of buttons</p>
+          <br>
+          <input type ='number' id ='numberOfButtons' min ="2" max = "20"/>
+          <br><br>
+          <button type="button" onclick="createButtons()"> 
+            Start
+           </button>
+           <br><br>
+          <div id="buttonContainer" class ="innerContainer"></div>
+      </div>
+    <div id="messageBox" class="message-box hidden">
+      <p id="messageText"></p>
+      <button onclick="closeMessage()">OK</button>
+    </div>
+    </div>
+    <script src ="main.js"></script>
+  </body>
+</html>
