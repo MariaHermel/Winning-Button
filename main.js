@@ -1,5 +1,5 @@
-const minim = 2;
-const maxim = 20
+const minimum = 2;
+const maximum = 20
 
 function showMessage(text) {
     const box = document.getElementById('messageBox');
@@ -11,8 +11,7 @@ function closeMessage() {
     document.getElementById('messageBox').classList.add('hidden');
 }
 
-
-function rezolution(i, button, winnerIndex) {
+function isWinner(i, button, winnerIndex) {
     if (i === winnerIndex) {
         showMessage("Congratulations! You found the winner!");
         button.classList.replace('btn-primary', 'btn-success');
@@ -29,7 +28,7 @@ function createButtons () {
     
     winnerIndex = Math.floor(Math.random() * numberOfButtons);
     
-    if(numberOfButtons < minim || numberOfButtons > maxim){
+    if(numberOfButtons < minimum || numberOfButtons > maximum){
         showMessage(`Please enter a number between ${minim} and ${maxim}.`);
         return;
     }     
@@ -37,7 +36,7 @@ function createButtons () {
         let button = document.createElement('button');
         button.textContent = `Button ${i + 1}`;
         button.className = 'btn btn-primary';
-        button.onclick = () => rezolution(i, button, winnerIndex);
-    container.appendChild(button);
+        button.onclick = () => isWinner(i, button, winnerIndex);
+        container.appendChild(button);
     }
 }
